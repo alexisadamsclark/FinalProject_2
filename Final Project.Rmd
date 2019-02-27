@@ -54,7 +54,7 @@ plot1a <- ggplot(data, aes(salary)) +
         plot.title = element_text(face = "bold", hjust = 0.5),
         plot.subtitle = element_text(face = "bold", hjust = 0.5)) + 
   scale_fill_manual(values = c("#66C2A5", "#440154FF")) + 
-  scale_x_continuous(labels=dollar)
+  scale_x_continuous(labels=scales::dollar)
 plot1a
 
 
@@ -69,7 +69,7 @@ plot1b <- ggplot(data, aes(x = sex, y = salary, fill = sex)) +
         plot.title = element_text(face = "bold", hjust = 0.5),
         plot.subtitle = element_text(face = "bold", hjust = 0.5)) + 
   scale_fill_manual(values = c("#66C2A5", "#440154FF")) + 
-  scale_y_continuous(labels=dollar)
+  scale_y_continuous(labels=scales::dollar)
 plot1b
 
 
@@ -90,7 +90,7 @@ plot1c <- ggplot(data, aes(x = sex, y = salary, color = sex)) +
        subtitle = "Faculty Salaries by Gender at University X \n", 
        x = "\n", 
        y = "Salary \n") + 
-  scale_y_continuous(labels=dollar)
+  scale_y_continuous(labels=scales::dollar)
 plot1c
 
 #still need to adjust theme font, think about setting y limit to ylim(0, 240000), and change annotations to look better, add caption with data source
