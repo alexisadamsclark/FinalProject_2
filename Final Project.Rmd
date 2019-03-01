@@ -5,6 +5,8 @@ date: "2/13/2019"
 output: html_document
 ---
 
+I really appreciated that you had the code to install less commonly used packages, definitely helps with 
+reproducibility! 
 ```{r setup, include = FALSE}
 library(knitr)
 library(rio)
@@ -13,6 +15,7 @@ library(car)
 library(waffle)
 library(extrafont)
 library(emojifont)
+
 
 #install.packages("extrafont")
 #install.packages("emojifont")
@@ -29,8 +32,11 @@ library(emojifont)
 knitr::opts_chunk$set(fig.width=8, fig.height=5, fig.align = "center", message = FALSE, error = FALSE, warning = FALSE)
 theme_set(theme_minimal(base_size = 25))
 options(scipen=999)
+# I typically have this code chunk separate from library and data import. 
 
 data <- Salaries
+#there's no code for data import. 
+
 data$sex <- factor(data$sex, levels = c("Male", "Female"))
 
 ```
