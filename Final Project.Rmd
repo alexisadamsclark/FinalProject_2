@@ -5,6 +5,8 @@ date: "2/13/2019"
 output: html_document
 ---
 
+I really appreciated that you had the code to install less commonly used packages, definitely helps with 
+reproducibility! 
 ```{r setup, include = FALSE}
 library(knitr)
 library(rio)
@@ -13,6 +15,7 @@ library(car)
 library(waffle)
 library(extrafont)
 library(emojifont)
+
 
 #install.packages("extrafont")
 #install.packages("emojifont")
@@ -30,7 +33,10 @@ knitr::opts_chunk$set(fig.width=8, fig.height=5, fig.align = "center", message =
 theme_set(theme_minimal(base_size = 25))
 options(scipen=999)
 
+# I typically have this code chunk separate from library and data import. 
+
 data <- Salaries
+
 data$sex <- factor(data$sex, levels = c("Male", "Female"))
 
 ```
@@ -74,7 +80,7 @@ plot1b
 
 
 #Final Version/Option 3:
-library(scales)
+library(scales) #maybe add this up top with other libraries
 plot1c <- ggplot(data, aes(x = sex, y = salary, color = sex)) + 
   geom_jitter(width = 0.15, alpha = 0.7, size = 3) + 
   theme(legend.position="none",
@@ -89,14 +95,17 @@ plot1c <- ggplot(data, aes(x = sex, y = salary, color = sex)) +
   labs(title = "The Gender Gap in Academia:", 
        subtitle = "Faculty Salaries by Gender at University X \n", 
        x = "\n", 
-       y = "Salary \n") + 
+       y = "Salary \n") + # I like this little trick \n to move the labels away from the plot
   scale_y_continuous(labels=scales::dollar)
 plot1c
 
 #still need to adjust theme font, think about setting y limit to ylim(0, 240000), and change annotations to look better, add caption with data source
 ```
+Notes for plot1
 
-```{r plot 2}
+Code was straight-forward and easy to follow!
+I enjoyed watching the transition from plot 1a-1c. You have so many areas of strengths for this plot including: large/easy to read text, helpful labels and title/subtitle. I like your annotations and the use of individual data points because it shows the distribution of data and the lack of female professors. One of my comments would be to extend the y axis which it looks like you are already planning on doing, you could also just have the annotations be black from simplicity! Overall it's great and the message is clear. 
+```{r plot 2} 
 #Plot 2 Goal: Showing how many female and male professors there at University X, by rank
   
 #Option 1: Just a simple stacked bar graph, but as we talked about in class, these kind of stink
@@ -135,6 +144,8 @@ data_summary2 <- data %>%
   summarize(n = n())
 
 partsf <- c("Assistant Professor" = 11, "Associate Professor" = 10, "Full Professor" = 18)
+
+
 plot2cw <- waffle(partsf, 
        rows = 3, 
        title = "Female Professors\n",
@@ -153,12 +164,13 @@ plot2cm + scale_fill_viridis_d()
 #Also, for the life of me I have not had luck with getting fontAwesome to work on my plot for glyphs, so if anyone has any tips, that would be great!
 #Still need to adjust theme font, add caption with data source
 ```
-
+Notes for plot 2 
+As I mentioned for the first plot- watching the transformation is fun! A l0t of strengths for your final plots: using waffle plots to show counts rather than a bar plot, color blind safe palette, clear labels. I only have a few suggestions: change "value" to "Rank" like you had in the first few plots, make legend text a little bigger. You could probably even use annotations to label on the blocks rather than using a legend. I haven't actually needed to merge multiple plots but you could try "par(mfrow=c(1,2))"
 ```{r plots}
 
 #Plot 3 Goal: Display the discrepancy in salaries between men and women at different professor ranks (assistant professor, associate professor, and full professor)
 
-#Option 1: Bar graph, but apparantly dynamite plots are bad.....!
+#Option 1: Bar graph, but apparantly dynamite plots are bad.....! # I honestly don't mind them that much ha!
 plot3a <- data %>% 
   group_by(sex, rank) %>% 
   summarize(mean = mean(salary), 
@@ -240,13 +252,17 @@ plot3c <- data %>%
                      labels = c("25%", "50%", "75%", "100%"),
                      limits = c(0, 1.25)) +
   coord_flip()
-ann_text<-data.frame(rank=c("Assistant Professor","Associate Professor","Full Professor","Assistant Professor","Associate Professor","Full Professor"),prop=c(1.10,1.10,1.10,1.10,1.10,1.10), discipline=c("Theoretical","Theoretical","Theoretical","Applied","Applied","Applied"),label=c("98.2%","84.8%", "90.8%", "99.4%", "97.8%", "98.7%"))
+ann_text<-data.frame(rank=c("Assistant Professor","Associate Professor","Full Professor","Assistant Professor","Associate Professor","Full Professor")
+                     ,prop=c(1.10,1.10,1.10,1.10,1.10,1.10), discipline=c("Theoretical","Theoretical","Theoretical","Applied","Applied","Applied"),
+                     label=c("98.2%","84.8%", "90.8%", "99.4%", "97.8%", "98.7%"))
+
 plot3c + geom_text(data = ann_text,label=ann_text$label, size = 8)
 
 ##Still need to adjust theme font, possibly colors, add caption with data source
 
 ```
-
+Plot 3 notes:
+I think this is a really interesting way to look at this relationship. I think for a scientific audience this is a really good plot but has a lot of parts for a general audience. I'm not quite sure I understand what the little red bars are (is that the line at 100%). The plot does highlight that it seems the issues is in the theoretical discipline! I like that added piece of information; the colors and font size is also great! My only suggestion would be to make % of Men's Pay be "percent of Men's Pay and maybe a solid line instead of the red dotted line, or remove it altogether! 
 ```{r plot 4}
 
 #Plot 4 Goal: Display the salary of men and women by years of service and years since phd
@@ -277,3 +293,5 @@ plot4b
 #Still playing around with, Still need to adjust theme font, add caption with data source
 
 ```
+Notes for plot4
+I think this is a really interesting plot! Once again a lot of strengths including large font size, clear labels, and showing individual data points. My only suggestion would be to maybe consider suppressing the se on the regression line so that you can see individual data points and then it would take away that gray box over the line/points in the legend. 
