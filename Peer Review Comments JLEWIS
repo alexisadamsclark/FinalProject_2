@@ -1,0 +1,25 @@
+I wasn’t able to install some of your packages and your script didn’t include data to import (maybe it’s part of one of the packages?), so I made my review based on the code as best I could.
+
+Visualization 1:
+
+Strengths:  You did a great job at putting in a lot customization into the plot, text and custom color and it makes for a really nice visual.  You paid attention to the little details and it really shows! It was also great to see your different iterations.
+
+I have never used geom_segment before so it was great for me to learn about this and see how you used it in your data.
+
+Also this "\n" was a great trick to learn!
+
+Potential area for improvement:  I agree with a comment you made, I think you could try out playing around with your y scale limits and this may improve the graph a little bit, but overall great job!
+
+Visualization 2:
+
+Strengths:  Great to use different color scales.  Again, really great to see the different iterations and the work you put into trying different things.  You also do a great job of making sure everything is really clearly labelled and easy to follow.
+
+I really couldn’t come up with a suggestion for improvement here because I wasn’t able to run the code and visualize the plot.  From the code it looks great.
+
+Visualization 3:
+
+Strengths: Great attention to details and labels again, really excellent.  
+
+Had a hard time visualizing what the geom_segment piece represented here, maybe would be more clear if I was able to run the visualization.
+
+Areas for Improvement:  Making the Y axis Title “Percent” rather than “%” would be nice I think
