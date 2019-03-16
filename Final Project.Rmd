@@ -134,7 +134,6 @@ plot2a <- ggplot(data, aes(x = sex, fill = rank)) +
         plot.subtitle = element_text(face = "bold", hjust = 0.5))
 plot2a
 
-ggplot_build(plot2a)$data
 
 #Option 2: Dodged bar graph with coord flip
 data2 <- data
@@ -277,7 +276,6 @@ plot3c + geom_text(data = ann_text,label=ann_text$label, size = 8)
 ```
 
 ```{r plot 4}
-
 #Plot 4 Goal: Display the salary of men and women by years of service and years since phd
 
 plot4a <- ggplot(data3, aes(x = yrs.service, y = salary, color = sex)) + 
